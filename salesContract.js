@@ -23,7 +23,7 @@ module.exports.pastAuctionSuccessfulEvents = (from, to) => {
     });
 };
 
-module.exports.pastAuctioCreatedEvents = (from, to) => {
+module.exports.pastAuctionCreatedEvents = (from, to) => {
     return getPastEvents('AuctionCreated', {
         fromBlock: from,
         toBlock: to
