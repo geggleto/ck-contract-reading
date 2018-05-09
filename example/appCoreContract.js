@@ -10,8 +10,11 @@ let startBlock = parseInt(process.argv[2]);
 let endBlock  = startBlock + parseInt(process.argv[3]);
 let body = [];
 
+console.log("Starting");
+
 contract.pastBirthEvents(startBlock, endBlock)
     .then((results) => {
+        console.log("processing");
         for (let i in results) {
             let result = results[i];
 
