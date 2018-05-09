@@ -6,9 +6,8 @@ let client = new elasticsearch.Client({
     host: 'localhost:9200'
 });
 
-
-let startBlock = 5470943;
-let endBlock  = startBlock+100; //10000 blocks
+let startBlock = parseInt(process.argv[2]);
+let endBlock  = startBlock + parseInt(process.argv[3]);
 let body = [];
 
 contract.pastBirthEvents(startBlock, endBlock)
