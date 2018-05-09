@@ -58,12 +58,16 @@ function queryBlockChain(startBlock, endBlock) {
                 body.push(doc);
 
                 if (body.length === 50) {
-                    client.bulk(body).catch(err => {console.log(err)});
+                    client.bulk({
+                        body: body
+                    }).catch(err => {console.log(err)});
                     body = [];
                 }
             }
 
-            client.bulk(body).catch(err => {console.log(err)});
+            client.bulk({
+                body: body
+            }).catch(err => {console.log(err)});
             body = [];
         }).then(() => {
             return queryBlockChain(endBlock+1, endBlock+inc);
