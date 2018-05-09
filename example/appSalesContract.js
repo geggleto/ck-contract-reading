@@ -1,4 +1,4 @@
-const contract = require('./../salesContract');
+const contract = require('../src/salesContract');
 
 let startBlock = 5470943;
 let endBlock  = startBlock+10000; //10000 blocks
