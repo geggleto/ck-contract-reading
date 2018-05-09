@@ -19,13 +19,17 @@ web3util.getBlockNumber().then(blockNumber => {
     currentBlockNumber = blockNumber;
 
     return queryBlockChain(startBlock, endBlock);
-});
+}).catch(err => {
+    console.log(err);
+})
 
 function queryBlockChain(startBlock, endBlock) {
     console.log("Querying " + startBlock + " to " + endBlock);
 
     if (startBlock > currentBlockNumber) {
-        return [];
+        return new Promise((resolve,reject) => {
+            resolve();
+        });
     }
 
     return contract.pastBirthEvents(startBlock, endBlock)
