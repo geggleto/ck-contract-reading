@@ -45,7 +45,7 @@ function queryBlockChain(startBlock, endBlock) {
                 };
 
                 db.query(
-                    "insert IGNORE into birth_events SET = ?",
+                    "insert IGNORE into birth_events SET ?",
                     doc,
                     function (error, results, fields) {
                         if (error) {
