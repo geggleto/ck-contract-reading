@@ -1,6 +1,5 @@
 const contract = require('../src/coreContract');
-const uuidv4 = require('uuid/v4');
-const connection = require('../src/db');
+const db = require('../src/db');
 const web3util = require('../src/web3Util');
 
 let inc = parseInt(process.argv[3]);
@@ -45,7 +44,7 @@ function queryBlockChain(startBlock, endBlock) {
                     genes : result.returnValues.genes
                 };
 
-                connection.query(
+                db.query(
                     "insert IGNORE into birth_events SET = ?",
                     doc,
                     function (error, results, fields) {
