@@ -3,10 +3,6 @@ const uuidv4 = require('uuid/v4');
 const connection = require('../src/db');
 const web3util = require('../src/web3Util');
 
-let client = new elasticsearch.Client({
-    host: 'localhost:9200'
-});
-
 let inc = parseInt(process.argv[3]);
 let startBlock = parseInt(process.argv[2]);
 let endBlock  = startBlock + inc;
