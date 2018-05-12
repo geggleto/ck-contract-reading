@@ -3,6 +3,7 @@
     "axios": "^0.18.0",
     "elasticsearch": "^14.2.2",
     "envs": "^0.1.6",
+    "mysql": "^2.15.0",
     "node-env-file": "^0.1.8",
     "uuid": "^3.2.1",
     "web3": "^1.0.0-beta.34"
