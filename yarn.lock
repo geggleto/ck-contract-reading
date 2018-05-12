@@ -387,6 +387,10 @@ debug@^3.1.0:
   dependencies:
     ms "2.0.0"
 
+debug@~0.8.1:
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-0.8.1.tgz#20ff4d26f5e422cb68a1bacbbb61039ad8c1c130"
+
 decode-uri-component@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
@@ -526,6 +530,13 @@ end-of-stream@^1.0.0:
   resolved "https://registry.yarnpkg.com/end-of-stream/-/end-of-stream-1.4.1.tgz#ed29634d19baba463b6ce6b80a37213eab71ec43"
   dependencies:
     once "^1.4.0"
+
+envs@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/envs/-/envs-0.1.6.tgz#17e10bff3063001668f61d0afbe6435f62d7a160"
+  dependencies:
+    debug "~0.8.1"
+    require-component "~0.1.0"
 
 escape-html@~1.0.3:
   version "1.0.3"
@@ -1147,6 +1158,10 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
+node-env-file@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/node-env-file/-/node-env-file-0.1.8.tgz#fccb7b050f735b5a33da9eb937cf6f1ab457fb69"
+
 number-to-bn@1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/number-to-bn/-/number-to-bn-1.7.0.tgz#bb3623592f7e5f9e0030b1977bd41a0c53fe1ea0"
@@ -1372,6 +1387,10 @@ request@^2.79.0:
     tough-cookie "~2.3.3"
     tunnel-agent "^0.6.0"
     uuid "^3.1.0"
+
+require-component@~0.1.0:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/require-component/-/require-component-0.1.1.tgz#993c6ce65ae2eed68155094d21fcc45ee61a0423"
 
 rimraf@2:
   version "2.6.2"

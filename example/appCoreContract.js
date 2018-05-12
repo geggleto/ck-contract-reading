@@ -1,6 +1,6 @@
 const contract = require('../src/coreContract');
 const uuidv4 = require('uuid/v4');
-const elasticsearch = require('elasticsearch');
+const connection = require('../src/db');
 const web3util = require('../src/web3Util');
 
 let client = new elasticsearch.Client({
@@ -10,7 +10,6 @@ let client = new elasticsearch.Client({
 let inc = parseInt(process.argv[3]);
 let startBlock = parseInt(process.argv[2]);
 let endBlock  = startBlock + inc;
-let body = [];
 let currentBlockNumber = 0;
 
 web3util.getBlockNumber().then(blockNumber => {
@@ -21,15 +20,19 @@ web3util.getBlockNumber().then(blockNumber => {
     return queryBlockChain(startBlock, endBlock);
 }).catch(err => {
     console.log(err);
-})
+});
 
 function queryBlockChain(startBlock, endBlock) {
     console.log("Querying " + startBlock + " to " + endBlock);
 
-    if (startBlock > currentBlockNumber) {
+    if (startBlock > currentBlockNumber - 16) {
         return new Promise((resolve,reject) => {
             resolve();
         });
+    }
+
+    if (endBlock > currentBlockNumber - 16) {
+        endBlock = currentBlockNumber - 16;
     }
 
     return contract.pastBirthEvents(startBlock, endBlock)
@@ -38,38 +41,25 @@ function queryBlockChain(startBlock, endBlock) {
             for (let i in results) {
                 let result = results[i];
 
-                let action = {
-                    index: {
-                        _index: 'cryptokitties',
-                        _type: 'birth-events',
-                        _id: uuidv4()
-                    }
-                };
-
                 let doc = {
-                    owner : result.returnValues.owner,
-                    kittyId : result.returnValues.kittyId,
-                    matronId : result.returnValues.matronId,
-                    sireId : result.returnValues.sireId,
+                    original_owner : result.returnValues.owner,
+                    kitty_id : result.returnValues.kittyId,
+                    matron_id : result.returnValues.matronId,
+                    sire_id : result.returnValues.sireId,
                     genes : result.returnValues.genes
                 };
 
-                body.push(action);
-                body.push(doc);
-
-                if (body.length === 50) {
-                    client.bulk({
-                        body: body
-                    }).catch(err => {console.log(err)});
-                    body = [];
-                }
+                connection.query(
+                    "insert IGNORE into birth_events SET = ?",
+                    doc,
+                    function (error, results, fields) {
+                        if (error) {
+                            console.log(error);
+                        }
+                    }
+                );
             }
-
-            client.bulk({
-                body: body
-            }).catch(err => {console.log(err)});
-            body = [];
         }).then(() => {
             return queryBlockChain(endBlock+1, endBlock+inc);
-        })
+        });
 }
