@@ -1,8 +1,14 @@
-# how to use
+# Setup
 
-`node appCoreContract.js <start block> <increment>`
+- yarn install
+- Create a database and table with the schema provided
+- Create a .env file in the root of the project using the schema provided.
 
-Increment should be max 5000
+# How to use
+
+`node cli/appCoreContract.js <start block> <increment>`
+
+Increment should be max 1000
 
 This app will populate a local elastic search server with Birth Event.
 
@@ -10,7 +16,11 @@ CK Start block is 4605167
 
 Sample: 
 
-`node appCoreContract.js 4605167 1000`
+`node cli/appCoreContract.js 4605167 1000`
+
+# Problems
+
+- Infuria's nodes sometimes crash, which will require you to restart, just start from the last block that completed.
 
 # DB schema
 
