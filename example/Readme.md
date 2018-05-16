@@ -10,4 +10,4 @@ CK Start block is 4605167
 
 Sample: 
 
-`node appCoreContract.js 4605167 5000`
+`node appCoreContract.js 4605167 1000`

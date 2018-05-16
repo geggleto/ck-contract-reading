@@ -21,9 +21,7 @@ function queryBlockChain(startBlock, endBlock) {
     console.log("Querying " + startBlock + " to " + endBlock);
 
     if (startBlock > currentBlockNumber - 16) {
-        return new Promise((resolve,reject) => {
-            resolve();
-        });
+        return;
     }
 
     if (endBlock > currentBlockNumber - 16) {
@@ -41,7 +39,7 @@ function queryBlockChain(startBlock, endBlock) {
                     kitty_id : result.returnValues.kittyId,
                     matron_id : result.returnValues.matronId,
                     sire_id : result.returnValues.sireId,
-                    genes : result.returnValues.genes
+                    genes : web3util.web3.utils.toHex(result.returnValues.genes)
                 };
 
                 db.query(
